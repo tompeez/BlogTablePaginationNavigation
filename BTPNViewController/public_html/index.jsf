@@ -54,7 +54,11 @@
                             <af:inputText label="Goto Page" id="it1" value="#{bindings.gotopage1.inputValue}" autoSubmit="true"/>
                             <af:button text="Go" id="b1" actionListener="#{viewScope.TablePaginationNavigationBean.onGotoPage}"/>
                             <af:spacer width="10" height="10" id="s2"/>
-                            <af:button text="GetPageOfSelectedRow" id="b2" actionListener="#{viewScope.TablePaginationNavigationBean.onGetCurrentPage}"/>
+                            <af:panelGroupLayout id="pgl3" layout="horizontal">
+                                <af:button text="GetPageOfSelectedRow" id="b2" actionListener="#{viewScope.TablePaginationNavigationBean.onGetCurrentPage}"/>
+                                <af:spacer width="10" height="10" id="s3"/>
+                                <af:outputText value="#{bindings.selectedRow1.inputValue}" id="ot8" partialTriggers="b2"/>
+                            </af:panelGroupLayout>
                         </af:panelGroupLayout>
                     </af:gridCell>
                 </af:gridRow>

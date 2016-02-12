@@ -5,6 +5,7 @@
   <executables>
     <variableIterator id="variables">
       <variable Name="gotopage" Type="java.lang.Integer"/>
+      <variable Name="selectedRow" Type="java.lang.String"/>
     </variableIterator>
     <iterator Binds="EmployeesView1" RangeSize="15" DataControl="BTPNAppModuleDataControl" id="EmployeesView1Iterator"/>
   </executables>
@@ -24,6 +25,11 @@
     <attributeValues IterBinding="variables" id="gotopage1">
       <AttrNames>
         <Item Value="gotopage"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="selectedRow1">
+      <AttrNames>
+        <Item Value="selectedRow"/>
       </AttrNames>
     </attributeValues>
   </bindings>

@@ -8,6 +8,7 @@ import javax.faces.event.ActionEvent;
 import oracle.adf.model.BindingContext;
 import oracle.adf.model.binding.DCIteratorBinding;
 import oracle.adf.share.logging.ADFLogger;
+import oracle.adf.view.rich.component.rich.data.RichTable;
 import oracle.adf.view.rich.context.AdfFacesContext;
 
 import oracle.binding.AttributeBinding;
@@ -45,7 +46,7 @@ public class TablePaginationNavigationBean {
         UIComponent table = iViewRoot.findComponent("t1");
         // build the event and fire it
         RangeChangeEvent event = new RangeChangeEvent(table, oldStart, oldEnd, newStart, newEnd);
-        table.broadcast(event);
+        ((RichTable)table).broadcast(event);
         // update the table
         AdfFacesContext.getCurrentInstance().addPartialTarget(table);
     }
@@ -53,10 +54,23 @@ public class TablePaginationNavigationBean {
     public void onGetCurrentPage(ActionEvent actionEvent) {
         BindingContainer bindingContainer = BindingContext.getCurrent().getCurrentBindingsEntry();
         DCIteratorBinding iter = (DCIteratorBinding) bindingContainer.get("EmployeesView1Iterator");
+        // calculate index and page number. Index is zero based!
         int currentRowIndex = iter.getRowSetIterator().getCurrentRowIndex();
         _logger.info("CurrentRowIndex: " + currentRowIndex);
         int currentPage = currentRowIndex / iter.getRangeSize();
         currentPage++;
         _logger.info("Current Page:" + currentPage);
+        int indexOnPage = (currentRowIndex % iter.getRangeSize());
+        _logger.info("Current index on Page:" + indexOnPage);
+        // get an ADF attributevalue from the ADF page definitions
+        AttributeBinding attr = (AttributeBinding) bindingContainer.getControlBinding("selectedRow1");
+        StringBuffer sb = new StringBuffer();
+        sb.append("row index overall: ");
+        sb.append(currentRowIndex);
+        sb.append(" row index on page: ");
+        sb.append(indexOnPage);
+        sb.append(" Page: ");
+        sb.append(currentPage);
+        attr.setInputValue(sb.toString());
     }
 }
