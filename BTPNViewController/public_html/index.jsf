@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="index.jsf" id="d1">
+        <af:messages id="m1"/>
+        <af:form id="f1">
+            <af:panelGridLayout id="pgl1">
+                <af:gridRow height="50px" id="gr2">
+                    <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc2">
+                        <!-- Header -->
+                        <af:outputText value="Table Pagination Navigation" id="ot1" inlineStyle="font-size:xx-large;"/>
+                    </af:gridCell>
+                </af:gridRow>
+                <af:gridRow height="100%" id="gr1">
+                    <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc1">
+                        <!-- Content -->
+                        <af:panelGroupLayout id="pgl2" layout="scroll">
+                            <af:table value="#{bindings.EmployeesView1.collectionModel}" var="row" rows="#{bindings.EmployeesView1.rangeSize}"
+                                      emptyText="#{bindings.EmployeesView1.viewable ? 'No data to display.' : 'Access Denied.'}" rowBandingInterval="0"
+                                      selectedRowKeys="#{bindings.EmployeesView1.collectionModel.selectedRow}"
+                                      selectionListener="#{bindings.EmployeesView1.collectionModel.makeCurrent}" rowSelection="single"
+                                      fetchSize="#{bindings.EmployeesView1.rangeSize}" id="t1" inlineStyle="height:353px;" autoHeightRows="15" width="739"
+                                      scrollPolicy="page">
+                                <af:column sortProperty="#{bindings.EmployeesView1.hints.EmployeeId.name}" sortable="true"
+                                           headerText="#{bindings.EmployeesView1.hints.EmployeeId.label}" id="c1">
+                                    <af:outputText value="#{row.EmployeeId}" shortDesc="#{bindings.EmployeesView1.hints.EmployeeId.tooltip}" id="ot2">
+                                        <af:convertNumber groupingUsed="false" pattern="#{bindings.EmployeesView1.hints.EmployeeId.format}"/>
+                                    </af:outputText>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.EmployeesView1.hints.FirstName.name}" sortable="true"
+                                           headerText="#{bindings.EmployeesView1.hints.FirstName.label}" id="c2">
+                                    <af:outputText value="#{row.FirstName}" shortDesc="#{bindings.EmployeesView1.hints.FirstName.tooltip}" id="ot3"/>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.EmployeesView1.hints.LastName.name}" sortable="true"
+                                           headerText="#{bindings.EmployeesView1.hints.LastName.label}" id="c3">
+                                    <af:outputText value="#{row.LastName}" shortDesc="#{bindings.EmployeesView1.hints.LastName.tooltip}" id="ot4"/>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.EmployeesView1.hints.Email.name}" sortable="true"
+                                           headerText="#{bindings.EmployeesView1.hints.Email.label}" id="c4">
+                                    <af:outputText value="#{row.Email}" shortDesc="#{bindings.EmployeesView1.hints.Email.tooltip}" id="ot5"/>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.EmployeesView1.hints.PhoneNumber.name}" sortable="true"
+                                           headerText="#{bindings.EmployeesView1.hints.PhoneNumber.label}" id="c5">
+                                    <af:outputText value="#{row.PhoneNumber}" shortDesc="#{bindings.EmployeesView1.hints.PhoneNumber.tooltip}" id="ot6"/>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.EmployeesView1.hints.HireDate.name}" sortable="true"
+                                           headerText="#{bindings.EmployeesView1.hints.HireDate.label}" id="c6">
+                                    <af:outputText value="#{row.HireDate}" shortDesc="#{bindings.EmployeesView1.hints.HireDate.tooltip}" id="ot7">
+                                        <af:convertDateTime pattern="#{bindings.EmployeesView1.hints.HireDate.format}"/>
+                                    </af:outputText>
+                                </af:column>
+                            </af:table>
+                            <af:spacer width="10" height="10" id="s1"/>
+                            <af:inputText label="Goto Page" id="it1" value="#{bindings.gotopage1.inputValue}" autoSubmit="true"/>
+                            <af:button text="Go" id="b1" actionListener="#{viewScope.TablePaginationNavigationBean.onGotoPage}"/>
+                            <af:spacer width="10" height="10" id="s2"/>
+                            <af:button text="GetPageOfSelectedRow" id="b2" actionListener="#{viewScope.TablePaginationNavigationBean.onGetCurrentPage}"/>
+                        </af:panelGroupLayout>
+                    </af:gridCell>
+                </af:gridRow>
+            </af:panelGridLayout>
+        </af:form>
+    </af:document>
+</f:view>

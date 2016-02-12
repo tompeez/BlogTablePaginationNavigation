@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE AppModule SYSTEM "jbo_03_01.dtd">
+<!---->
+<AppModule
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="BTPNAppModule"
+  Version="12.1.3.10.8"
+  InheritPersonalization="merge"
+  ClearCacheOnRollback="true">
+  <ViewUsage
+    Name="EmployeesView1"
+    ViewObjectName="de.hahn.blog.tablepaginationnavigation.model.adfbc.views.EmployeesView"/>
+  <ViewUsage
+    Name="EmployeesView2"
+    ViewObjectName="de.hahn.blog.tablepaginationnavigation.model.adfbc.views.EmployeesView"/>
+  <ViewLinkUsage
+    Name="EmpManagerFkLink1"
+    ViewLinkObjectName="de.hahn.blog.tablepaginationnavigation.model.adfbc.views.viewlinks.EmpManagerFkLink"
+    SrcViewUsageName="de.hahn.blog.tablepaginationnavigation.model.adfbc.service.BTPNAppModule.EmployeesView1"
+    DstViewUsageName="de.hahn.blog.tablepaginationnavigation.model.adfbc.service.BTPNAppModule.EmployeesView2"
+    Reversed="false"/>
+</AppModule>
